@@ -2,12 +2,36 @@
 using System;
 using System.IO;
 
+// public class CompoundWord
+// {
+//     public string firstWord { get; set; }
+//     public string secondWord { get; set; }
+
+//     public CompoundWord(string word1, string word2)
+//     {
+//         firstWord = word1;
+//         secondWord = word2;
+//     }
+
+//     public string compound()
+//     {
+//         return firstWord + secondWord;
+//     }
+
+//     public override string ToString()
+//     {
+//         return $"{firstWord} + {secondWord} => {compound()}";
+//     }
+// }
+
 class Program
 {
     static void Main(string[] args)
     {
         try
         {
+            List<CompoundWord> finalWords = new List<CompoundWord>();
+            int targetLength = 6;
             string[] rawWords = System.IO.File.ReadAllLines("dictionary.txt");
             Dictionary<int, List<string>> wordsByLength = new Dictionary<int, List<string>>();
 
@@ -19,18 +43,31 @@ class Program
                     init.Add(word);
                     wordsByLength.Add(word.Length, init);
                 } else {
-                    // wordsByLength[word.Length].Append(word);
                     wordsByLength[word.Length].Add(word);
                 }
             }
             
             foreach (KeyValuePair<int, List<string>> wordsList in wordsByLength)
             {
+                int currentLength = wordsList.Key;
+                int neededLength = targetLength - currentLength;
+                if (currentLength > 0 && neededLength >= 1 && wordsByLength.ContainsKey(neededLength))
+                {
+                    List<string> currentWords = wordsList.Value;
+                    currentWords.ForEach(firstWord => {
+                        wordsByLength[neededLength].ForEach(secondWord => {
+                            CompoundWord newWord = new CompoundWord(firstWord, secondWord);
+                            finalWords.Add(newWord);
+                        });
+                    });
+                }
                 // Console.WriteLine("---------");
                 // Console.WriteLine($"Array of Words with Length = {wordsList.Key}:");
                 // wordsList.Value.ForEach(word => Console.Write("{0},", word));
-                System.IO.File.WriteAllLines($"wordsList_Length-{wordsList.Key}.txt", wordsList.Value);
+                // System.IO.File.WriteAllLines($"wordsList_Length-{wordsList.Key}.txt", wordsList.Value);
             }
+
+            System.IO.File.WriteAllLines($"finalWords.txt", finalWords.ConvertAll(word => word.ToString()));
         }
         catch (IOException e)
         {
