@@ -8,11 +8,29 @@ class Program
     {
         try
         {
-            string[] rawWords = System.IO.File.ReadAllLines("dictionary.txt"); 
-            
-            string[] twoLetterWords = Array.FindAll(rawWords, s => s.Length == 2);
+            string[] rawWords = System.IO.File.ReadAllLines("dictionary.txt");
+            Dictionary<int, List<string>> wordsByLength = new Dictionary<int, List<string>>();
 
-            System.IO.File.WriteAllLines("twoLetterWords.txt", twoLetterWords);
+            foreach (string word in rawWords)
+            {
+                if (!wordsByLength.ContainsKey(word.Length))
+                {
+                    List<string> init = new List<string>();
+                    init.Add(word);
+                    wordsByLength.Add(word.Length, init);
+                } else {
+                    // wordsByLength[word.Length].Append(word);
+                    wordsByLength[word.Length].Add(word);
+                }
+            }
+            
+            foreach (KeyValuePair<int, List<string>> wordsList in wordsByLength)
+            {
+                // Console.WriteLine("---------");
+                // Console.WriteLine($"Array of Words with Length = {wordsList.Key}:");
+                // wordsList.Value.ForEach(word => Console.Write("{0},", word));
+                System.IO.File.WriteAllLines($"wordsList_Length-{wordsList.Key}.txt", wordsList.Value);
+            }
         }
         catch (IOException e)
         {
