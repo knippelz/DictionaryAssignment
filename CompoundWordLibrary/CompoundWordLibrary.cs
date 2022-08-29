@@ -1,4 +1,4 @@
-﻿namespace DictioanryAssignmentLibraries;
+﻿namespace DictionaryAssignmentLibraries;
 public static class CompoundWordLibrary
 {
     public static bool IsValidCompoundWord(string firstWord, string secondWord, int targetLength) {
