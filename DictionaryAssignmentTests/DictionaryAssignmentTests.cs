@@ -99,6 +99,27 @@ namespace DictionaryAssignmentTests
         }
 
         [TestMethod]
+        public void calculateCompoundWords_targetLengthAffectsCompounding()
+        {
+            int targetLength = 5;
+            string testWord1 = "te";
+            string testWord2 = "sts";
+            CompoundWord expectedCompound1 = new CompoundWord(testWord1, testWord2);
+            CompoundWord expectedCompound2 = new CompoundWord(testWord2, testWord1);
+            string[] testArray = { testWord1, testWord2 };
+
+            DictionaryTracker dT = new DictionaryTracker(testArray, targetLength);
+            dT.sortWordsByLength();
+            dT.calculateCompoundWords();
+
+            Assert.AreEqual(dT.finalWords.Count, 2, "compoundwords incorrect length");
+            // I don't like this method, was having a tough time getting Contains() or list comparison to behave
+            // I also don't like using the ToString() method for this - I should use a helper to compare these next time!!!
+            Assert.AreEqual(dT.finalWords.First().ToString(), expectedCompound1.ToString(), "compoundword1 missing");
+            Assert.AreEqual(dT.finalWords.Last().ToString(), expectedCompound2.ToString(), "compoundword2 missing");
+        }
+
+        [TestMethod]
         public void sortFinalWords_alphabeticalSort()
         {
             string testWord1 = "te";
