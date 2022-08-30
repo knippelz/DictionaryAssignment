@@ -1,19 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32819.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompoundWordLibrary", "CompoundWordLibrary\CompoundWordLibrary.csproj", "{64FF34A8-AACF-4AA2-AC82-5B62E49DB8AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompoundWordLibrary", "CompoundWordLibrary\CompoundWordLibrary.csproj", "{64FF34A8-AACF-4AA2-AC82-5B62E49DB8AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DictionaryAssignment", "DictionaryAssignment\DictionaryAssignment.csproj", "{05F0617F-E4A5-4DAC-BCDA-99833AC3DE02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DictionaryAssignment", "DictionaryAssignment\DictionaryAssignment.csproj", "{05F0617F-E4A5-4DAC-BCDA-99833AC3DE02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DictionaryAssignmentTests", "DictionaryAssignmentTests\DictionaryAssignmentTests.csproj", "{BD701D8E-4746-4743-94CC-C95A4D8E3985}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{64FF34A8-AACF-4AA2-AC82-5B62E49DB8AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -24,5 +23,15 @@ Global
 		{05F0617F-E4A5-4DAC-BCDA-99833AC3DE02}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05F0617F-E4A5-4DAC-BCDA-99833AC3DE02}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05F0617F-E4A5-4DAC-BCDA-99833AC3DE02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD701D8E-4746-4743-94CC-C95A4D8E3985}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD701D8E-4746-4743-94CC-C95A4D8E3985}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD701D8E-4746-4743-94CC-C95A4D8E3985}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD701D8E-4746-4743-94CC-C95A4D8E3985}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4234AD74-7DA9-4C93-AD32-AF318EBD8768}
 	EndGlobalSection
 EndGlobal

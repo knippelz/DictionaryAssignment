@@ -36,7 +36,7 @@ public class DictionaryTracker
     public List<CompoundWord> finalWords { get; set;}
     public string[] rawWords { get; set;}
     public int targetLength { get; set;}
-    private Dictionary<int, List<string>> wordsByLength;
+    public Dictionary<int, List<string>> wordsByLength;
     
     public DictionaryTracker(string[] rawWords, int targetLength = 6)
     {
@@ -44,25 +44,28 @@ public class DictionaryTracker
         this.rawWords = rawWords;
         this.finalWords = new List<CompoundWord>();
         this.wordsByLength = new Dictionary<int, List<string>>();
-        this.generateCompoundWords();
     }
 
-    private void sortWordsByLength()
+    public void sortWordsByLength()
     {
         foreach (string word in rawWords)
         {
-            if (!wordsByLength.ContainsKey(word.Length))
+
+            if (word.Length < this.targetLength)
             {
-                List<string> init = new List<string>();
-                init.Add(word);
-                wordsByLength.Add(word.Length, init);
-            } else {
-                wordsByLength[word.Length].Add(word);
+                if (!wordsByLength.ContainsKey(word.Length))
+                {
+                    List<string> init = new List<string>();
+                    init.Add(word);
+                    wordsByLength.Add(word.Length, init);
+                } else {
+                    wordsByLength[word.Length].Add(word);
+                }
             }
         }
     }
 
-    private void calculateCompoundWords()
+    public void calculateCompoundWords()
     {
         foreach (KeyValuePair<int, List<string>> wordsList in this.wordsByLength)
         {
@@ -81,14 +84,14 @@ public class DictionaryTracker
         }
     }
 
-    private void sortFinalWords()
+    public void sortFinalWords()
     {
         IEnumerable<CompoundWord> sortedWords = this.finalWords.OrderBy(word => word.compound()).ThenBy(word => word.firstWord.Length);
         this.finalWords = sortedWords.ToList();
         // System.IO.File.WriteAllLines($"finalWords.txt", sortedWords.ToList().ConvertAll(word => word.ToString()));
     }
 
-    private void generateCompoundWords()
+    public void generateCompoundWords()
     {
         this.sortWordsByLength();
         this.calculateCompoundWords();

@@ -1,5 +1,7 @@
 # Dictionary Assignment
 
+## How to Run This
+
 ## Assignment Description (provided by Mark Hollman)
 
 We have provided you with a file containing a list of words (dictionary.txt), the objective of this assignment is to find all six-letter words that are built of two concatenated smaller words, for example:
