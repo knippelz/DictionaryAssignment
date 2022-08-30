@@ -1,6 +1,18 @@
 # Dictionary Assignment
 
-## How to Run This
+## How to Run This Assignment
+1. Download the project from GitHub ([link here](https://github.com/tinyeye-zach/DictionaryAssignment.git))
+2. Ensure that .NET 6.0 is installed ([link here](https://dotnet.microsoft.com/en-us/download/dotnet/6.0))
+3. In Powershell (or your preferred terminal) navigate to the project directory
+4. Enter the command ```dotnet build``` to build the project
+5. Once the project is built, use the command ```dotnet run --project .\DictionaryAssignment\DictionaryAssignment.csproj``` to run it
+6. If you want to input a target length parameter, add the target length (as a number) after at the end of the run command.
+   - For example, if you want a target length of 4, then use ```dotnet run --project .\DictionaryAssignment\DictionaryAssignment.csproj 4```
+
+## Highlighting some areas I need to improve on
+I'm still learning C# and this was my first time using .NET. It would love to these tools - but as this is my first time and I'll highlight some areas where I know I struggled. I honestly was using Powershell and VS Code for most of this project, and didn't find the difference between VS Code and Visual Studio until I was reviewing a tutorial on unit testing at the end.
+- Unit tests shouldn't be relying on the First() or Last() function of the list. I was struggling to get the correct comparison tools identified and installed in time, so I need to identify those in the future.
+- Target Length Parameter - I'm not a big fan of the args[0] method I used. I heard of a few libraries such as commandlineparser at the end of this assignment, but wanted to see what was available without using external libraries.
 
 ## Assignment Description (provided by Mark Hollman)
 
