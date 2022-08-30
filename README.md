@@ -9,10 +9,18 @@
 6. If you want to input a target length parameter, add the target length (as a number) after at the end of the run command.
    - For example, if you want a target length of 4, then use ```dotnet run --project .\DictionaryAssignment\DictionaryAssignment.csproj 4```
 
+**(OPTIONAL)** - a unit test suite is included (```DictionaryAssignmentTests```). This is honestly where I learned about Visual Studio vs. VS Code, and it can be run by...
+1. Import the DictionaryAssignment solution into Visual Studio
+2. In Visual Studio, select **Test > Run All Tests** from the top menu, or use the hotkey **Ctrl+R, A**
+
 ## Highlighting some areas I need to improve on
 I'm still learning C# and this was my first time using .NET. It would love to these tools - but as this is my first time and I'll highlight some areas where I know I struggled. I honestly was using Powershell and VS Code for most of this project, and didn't find the difference between VS Code and Visual Studio until I was reviewing a tutorial on unit testing at the end.
 - Unit tests shouldn't be relying on the First() or Last() function of the list. I was struggling to get the correct comparison tools identified and installed in time, so I need to identify those in the future.
+- I'm not comfortable with only making the one library with multiple classes inside the main .cs file. I'm looking now into better ways to break that up - I'm not a big fan of that particular folder structure, and this came about from my first time using the ```dotnet sln``` and creating libraries via console commands.
 - Target Length Parameter - I'm not a big fan of the args[0] method I used. I heard of a few libraries such as commandlineparser at the end of this assignment, but wanted to see what was available without using external libraries.
+- Importing dictionary.txt - I kept running into issues trying to import the dictionary.txt file when running the project in Visual Studio, but had no problems in the command line. I was having a tough time getting the run configuration to properly identify the path in a way that was relative to the project itself, so next time I would prefer having this in a configuration file or having a better relative path method.
+
+Honestly, I see a lot to improve on a technical level with my code. Other libraries should have been added, I need to break these classes down into more manageable chunks, and although I tried to improve dictionary performance by breaking the dictionary.txt file into a dictionary of string arrays keyed by word length it's not running as fast as I had hoped. But considering I had ***never*** worked with .NET until yesterday evening, I think this is an acceptable example of how much I can learn, adapt and self-reflect in a short period of time.
 
 ## Assignment Description (provided by Mark Hollman)
 
@@ -50,5 +58,3 @@ Add support for a length parameter to be passed into the application which will 
  
 Performance enhancements
 Identify performance bottle necks and implement improvements to reduce the runtime. Document the bottlenecks you identify and the solution you implemented.
-
-
