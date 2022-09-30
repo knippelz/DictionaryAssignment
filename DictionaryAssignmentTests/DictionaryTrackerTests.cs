@@ -1,37 +1,7 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-using DictionaryAssignmentLibraries;
+using CompoundWordLibrary;
 
 namespace DictionaryAssignmentTests
 {
-    [TestClass]
-    public class CounpoundWordTests
-    {
-        [TestMethod]
-        public void compoundIsCorrect()
-        {
-            string word1 = "test";
-            string word2 = "er";
-            string expectedCompoundWord = "tester";
-
-            CompoundWord testCompound = new CompoundWord(word1, word2);
-
-            Assert.AreEqual(testCompound.compound(), expectedCompoundWord, "Compound word not matching");
-        }
-
-        [TestMethod]
-        public void compoundToString()
-        {
-            string word1 = "test";
-            string word2 = "er";
-            string expectedString = "test + er => tester";
-
-            CompoundWord testCompound = new CompoundWord(word1, word2);
-
-            Assert.AreEqual(testCompound.ToString(), expectedString, "Compound word not matching");
-        }
-    }
-
     [TestClass]
     public class DictionaryTrackerTests
     {
@@ -42,11 +12,11 @@ namespace DictionaryAssignmentTests
             string[] testArray = { testWord };
             int expectedKey = testWord.Length;
             DictionaryTracker dT = new DictionaryTracker(testArray);
-            dT.sortWordsByLength();
+            dT.SortWordsByLength();
 
-            Assert.IsTrue(dT.wordsByLength.ContainsKey(expectedKey), "wordsByLength missing key");
-            Assert.AreEqual(dT.wordsByLength[expectedKey].Count, 1, "wordsByLength array of strings is incorrect");
-            Assert.AreEqual(dT.wordsByLength[expectedKey].First(), testWord, "wordsByLength item is incorrect");
+            Assert.IsTrue(dT.WordsByLength.ContainsKey(expectedKey), "wordsByLength missing key");
+            Assert.AreEqual(dT.WordsByLength[expectedKey].Count, 1, "wordsByLength array of strings is incorrect");
+            Assert.AreEqual(dT.WordsByLength[expectedKey].First(), testWord, "wordsByLength item is incorrect");
         }
 
         [TestMethod]
@@ -57,13 +27,13 @@ namespace DictionaryAssignmentTests
             string[] testArray = { testWord, testWord2 };
             int expectedKey = testWord.Length;
             DictionaryTracker dT = new DictionaryTracker(testArray);
-            dT.sortWordsByLength();
+            dT.SortWordsByLength();
 
-            Assert.IsTrue(dT.wordsByLength.ContainsKey(expectedKey), "wordsByLength missing key");
-            Assert.AreEqual(dT.wordsByLength[expectedKey].Count, 2, "wordsByLength array of strings is incorrect");
+            Assert.IsTrue(dT.WordsByLength.ContainsKey(expectedKey), "wordsByLength missing key");
+            Assert.AreEqual(dT.WordsByLength[expectedKey].Count, 2, "wordsByLength array of strings is incorrect");
             // There has to be a better way to check these items rather than "first"/"last"...
-            Assert.AreEqual(dT.wordsByLength[expectedKey].First(), testWord, "wordsByLength first word is incorrect");
-            Assert.AreEqual(dT.wordsByLength[expectedKey].Last(), testWord2, "wordsByLength second word is incorrect");
+            Assert.AreEqual(dT.WordsByLength[expectedKey].First(), testWord, "wordsByLength first word is incorrect");
+            Assert.AreEqual(dT.WordsByLength[expectedKey].Last(), testWord2, "wordsByLength second word is incorrect");
         }
 
         [TestMethod]
@@ -73,9 +43,9 @@ namespace DictionaryAssignmentTests
             string[] testArray = { testWord };
             int expectedKey = testWord.Length;
             DictionaryTracker dT = new DictionaryTracker(testArray);
-            dT.sortWordsByLength();
+            dT.SortWordsByLength();
 
-            Assert.IsFalse(dT.wordsByLength.ContainsKey(expectedKey), "wordsByLength has invalid key");
+            Assert.IsFalse(dT.WordsByLength.ContainsKey(expectedKey), "wordsByLength has invalid key");
         }
 
         [TestMethod]
@@ -88,14 +58,14 @@ namespace DictionaryAssignmentTests
             string[] testArray = { testWord1, testWord2 };
             
             DictionaryTracker dT = new DictionaryTracker(testArray);
-            dT.sortWordsByLength();
-            dT.calculateCompoundWords();
+            dT.SortWordsByLength();
+            dT.CalculateCompoundWords();
 
-            Assert.AreEqual(dT.finalWords.Count, 2, "compoundwords incorrect length");
+            Assert.AreEqual(dT.Compounds.Count, 2, "compoundwords incorrect length");
             // I don't like this method, was having a tough time getting Contains() or list comparison to behave
             // I also don't like using the ToString() method for this - I should use a helper to compare these next time!!!
-            Assert.AreEqual(dT.finalWords.First().ToString(), expectedCompound1.ToString(), "compoundword1 missing");
-            Assert.AreEqual(dT.finalWords.Last().ToString(), expectedCompound2.ToString(), "compoundword2 missing");
+            Assert.AreEqual(dT.Compounds.First().ToString(), expectedCompound1.ToString(), "compoundword1 missing");
+            Assert.AreEqual(dT.Compounds.Last().ToString(), expectedCompound2.ToString(), "compoundword2 missing");
         }
 
         [TestMethod]
@@ -109,14 +79,14 @@ namespace DictionaryAssignmentTests
             string[] testArray = { testWord1, testWord2 };
 
             DictionaryTracker dT = new DictionaryTracker(testArray, targetLength);
-            dT.sortWordsByLength();
-            dT.calculateCompoundWords();
+            dT.SortWordsByLength();
+            dT.CalculateCompoundWords();
 
-            Assert.AreEqual(dT.finalWords.Count, 2, "compoundwords incorrect length");
+            Assert.AreEqual(dT.Compounds.Count, 2, "compoundwords incorrect length");
             // I don't like this method, was having a tough time getting Contains() or list comparison to behave
             // I also don't like using the ToString() method for this - I should use a helper to compare these next time!!!
-            Assert.AreEqual(dT.finalWords.First().ToString(), expectedCompound1.ToString(), "compoundword1 missing");
-            Assert.AreEqual(dT.finalWords.Last().ToString(), expectedCompound2.ToString(), "compoundword2 missing");
+            Assert.AreEqual(dT.Compounds.First().ToString(), expectedCompound1.ToString(), "compoundword1 missing");
+            Assert.AreEqual(dT.Compounds.Last().ToString(), expectedCompound2.ToString(), "compoundword2 missing");
         }
 
         [TestMethod]
@@ -130,11 +100,11 @@ namespace DictionaryAssignmentTests
             List<CompoundWord> expectedList = new List<CompoundWord> { expectedCompound1, expectedCompound2 };
 
             DictionaryTracker dT = new DictionaryTracker(testArray);
-            dT.sortWordsByLength();
-            dT.calculateCompoundWords();
-            dT.sortFinalWords();
+            dT.SortWordsByLength();
+            dT.CalculateCompoundWords();
+            dT.SortFinalWords();
             
-            Assert.AreEqual(dT.finalWords.First().ToString(), expectedCompound1.ToString(), "incorrect alphabetical sorting");
+            Assert.AreEqual(dT.FinalWords.First().ToString(), expectedCompound1.ToString(), "incorrect alphabetical sorting");
         }
 
         [TestMethod]
@@ -150,19 +120,19 @@ namespace DictionaryAssignmentTests
             string[] testArray = { testWord1, testWord2, testWord3, testWord4 };
 
             DictionaryTracker dT = new DictionaryTracker(testArray);
-            dT.sortWordsByLength();
-            dT.calculateCompoundWords();
-            dT.sortFinalWords();
-            
-            int shortFirstWordIndex = dT.finalWords.FindIndex(word => word.firstWord == testWord3 && word.secondWord == testWord4);
-            int longFirstWordIndex = dT.finalWords.FindIndex(word => word.firstWord == testWord1 && word.secondWord == testWord2);
+            dT.SortWordsByLength();
+            dT.CalculateCompoundWords();
+            dT.SortFinalWords();
+
+            int shortFirstWordIndex = dT.FinalWords.FindIndex(word => word.FirstWord == testWord3 && word.SecondWord == testWord4);
+            int longFirstWordIndex = dT.FinalWords.FindIndex(word => word.FirstWord == testWord1 && word.SecondWord == testWord2);
 
             Assert.IsTrue(longFirstWordIndex - shortFirstWordIndex == 1, "compound words not next to each other");
             Assert.IsTrue(shortFirstWordIndex < longFirstWordIndex, "firstword tiebreaker sort not working");
         }
 
         [TestMethod]
-        public void outputList()
+        public void OutputList()
         {
             string testWord1 = "te";
             string testWord2 = "ster";
@@ -173,9 +143,9 @@ namespace DictionaryAssignmentTests
             List<string> expectedOutput = new List<string> { expectedCompound1.ToString(), expectedCompound2.ToString() };
 
             DictionaryTracker dT = new DictionaryTracker(testArray);
-            dT.generateCompoundWords();
+            dT.GenerateCompoundWords();
 
-            CollectionAssert.AreEqual(dT.outputList(), expectedOutput, "outputList is incorrect");
+            CollectionAssert.AreEqual(dT.OutputList(), expectedOutput, "outputList is incorrect");
         }
 
     }

@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CompoundWordLibrary\CompoundWordLibrary.csproj" />
     <ProjectReference Include="..\DictionaryAssignment\DictionaryAssignment.csproj" />
   </ItemGroup>
 

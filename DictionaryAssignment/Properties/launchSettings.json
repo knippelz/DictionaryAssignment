@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DictionaryAssignment": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\Users\\zk31794\\source\\github\\DictionaryAssignment\\dictionary.txt\r\nC:\\Users\\zk31794\\source\\github\\DictionaryAssignment\\output.txt"
+    }
+  }
+}
