@@ -20,5 +20,15 @@
         {
             return $"{FirstWord} + {SecondWord} => {Compound()}";
         }
+
+        public override bool Equals(object obj)
+        {
+            return this.FirstWord.Equals(((CompoundWord)obj).FirstWord) && this.SecondWord.Equals(((CompoundWord)obj).SecondWord);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(FirstWord, SecondWord);
+        }
     }
 }

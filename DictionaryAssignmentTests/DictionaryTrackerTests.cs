@@ -31,9 +31,8 @@ namespace DictionaryAssignmentTests
 
             Assert.IsTrue(dT.WordsByLength.ContainsKey(expectedKey), "wordsByLength missing key");
             Assert.AreEqual(dT.WordsByLength[expectedKey].Count, 2, "wordsByLength array of strings is incorrect");
-            // There has to be a better way to check these items rather than "first"/"last"...
-            Assert.AreEqual(dT.WordsByLength[expectedKey].First(), testWord, "wordsByLength first word is incorrect");
-            Assert.AreEqual(dT.WordsByLength[expectedKey].Last(), testWord2, "wordsByLength second word is incorrect");
+            Assert.IsTrue(dT.WordsByLength[expectedKey].Contains(testWord), "wordsByLength first word is incorrect");
+            Assert.IsTrue(dT.WordsByLength[expectedKey].Contains(testWord2), "wordsByLength first word is incorrect");
         }
 
         [TestMethod]
@@ -62,10 +61,8 @@ namespace DictionaryAssignmentTests
             dT.CalculateCompoundWords();
 
             Assert.AreEqual(dT.Compounds.Count, 2, "compoundwords incorrect length");
-            // I don't like this method, was having a tough time getting Contains() or list comparison to behave
-            // I also don't like using the ToString() method for this - I should use a helper to compare these next time!!!
-            Assert.AreEqual(dT.Compounds.First().ToString(), expectedCompound1.ToString(), "compoundword1 missing");
-            Assert.AreEqual(dT.Compounds.Last().ToString(), expectedCompound2.ToString(), "compoundword2 missing");
+            Assert.IsTrue(dT.Compounds.Contains(expectedCompound1), "compoundword1 missing");
+            Assert.IsTrue(dT.Compounds.Contains(expectedCompound2), "compoundword2 missing");
         }
 
         [TestMethod]
@@ -83,10 +80,8 @@ namespace DictionaryAssignmentTests
             dT.CalculateCompoundWords();
 
             Assert.AreEqual(dT.Compounds.Count, 2, "compoundwords incorrect length");
-            // I don't like this method, was having a tough time getting Contains() or list comparison to behave
-            // I also don't like using the ToString() method for this - I should use a helper to compare these next time!!!
-            Assert.AreEqual(dT.Compounds.First().ToString(), expectedCompound1.ToString(), "compoundword1 missing");
-            Assert.AreEqual(dT.Compounds.Last().ToString(), expectedCompound2.ToString(), "compoundword2 missing");
+            Assert.IsTrue(dT.Compounds.Contains(expectedCompound1), "compoundword1 missing");
+            Assert.IsTrue(dT.Compounds.Contains(expectedCompound2), "compoundword2 missing");
         }
 
         [TestMethod]
@@ -103,8 +98,10 @@ namespace DictionaryAssignmentTests
             dT.SortWordsByLength();
             dT.CalculateCompoundWords();
             dT.SortFinalWords();
-            
-            Assert.AreEqual(dT.FinalWords.First().ToString(), expectedCompound1.ToString(), "incorrect alphabetical sorting");
+
+            var indexFirstWord = dT.FinalWords.IndexOf(expectedCompound1);
+            var indexSecondWord = dT.FinalWords.IndexOf(expectedCompound2);
+            Assert.IsTrue(indexFirstWord < indexSecondWord, "incorrect alphabetical sorting");
         }
 
         [TestMethod]
@@ -124,11 +121,11 @@ namespace DictionaryAssignmentTests
             dT.CalculateCompoundWords();
             dT.SortFinalWords();
 
-            int shortFirstWordIndex = dT.FinalWords.FindIndex(word => word.FirstWord == testWord3 && word.SecondWord == testWord4);
-            int longFirstWordIndex = dT.FinalWords.FindIndex(word => word.FirstWord == testWord1 && word.SecondWord == testWord2);
-
-            Assert.IsTrue(longFirstWordIndex - shortFirstWordIndex == 1, "compound words not next to each other");
-            Assert.IsTrue(shortFirstWordIndex < longFirstWordIndex, "firstword tiebreaker sort not working");
+            int indexFirstWord = dT.FinalWords.IndexOf(expectedCompound2);
+            int indexSecondWord = dT.FinalWords.IndexOf(expectedCompound1);
+            
+            Assert.IsTrue(indexSecondWord - indexFirstWord == 1, "compound words not next to each other");
+            Assert.IsTrue(indexFirstWord < indexSecondWord, "firstword tiebreaker sort not working");
         }
 
         [TestMethod]
