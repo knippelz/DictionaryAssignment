@@ -8,12 +8,24 @@
 5. Once the project is built, use the command ```dotnet run --project .\DictionaryAssignment\DictionaryAssignment.csproj``` to run it
 6. If you want to input a target length parameter, add the target length (as a number) after at the end of the run command.
    - For example, if you want a target length of 4, then use ```dotnet run --project .\DictionaryAssignment\DictionaryAssignment.csproj 4```
+7. Alternatively, you can run the project using the ```RunDictionaryAssignment.ps1``` script, which will handle steps 4-6 automatically.
 
 **(OPTIONAL)** - a unit test suite is included (```DictionaryAssignmentTests```). This is honestly where I learned about Visual Studio vs. VS Code, and it can be run by...
 1. Import the DictionaryAssignment solution into Visual Studio
 2. In Visual Studio, select **Test > Run All Tests** from the top menu, or use the hotkey **Ctrl+R, A**
 
-## Highlighting some areas I need to improve on
+## Changes made during Week 1
+Going off the examples provided by Tony and Dan, I've found that my overall solution was very close but more optimizations and attention to C# code standards are needed. From that, here's what I have changed...
+- I am using a HashSet to store the raw words and compound words. This is significantly faster to access and a lot of performance increases can be attributed to this.
+- I have implemented the ```IEquatable``` interface on the ```CompoundWord``` class to specify a custom comparison function - makes searching for a specific item far easier and allows me to improve my tests significantly.
+- Separated my tests into two files - one for each class
+- Used PascalCase for all class variables and functions - though local functions are still camelCase.
+- Swapped to an output file rather than console because it's far faster. It's also easier to check the results and see how long the program itself processes the file.
+- Added a script to make running the program easier.
+- The input file is given as a command-line argument (as is the output file)
+
+
+## ORIGINAL - Highlighting some areas I need to improve on
 I'm still learning C# and this was my first time using .NET. It would love to these tools - but as this is my first time and I'll highlight some areas where I know I struggled. I honestly was using Powershell and VS Code for most of this project, and didn't find the difference between VS Code and Visual Studio until I was reviewing a tutorial on unit testing at the end.
 - Unit tests shouldn't be relying on the First() or Last() function of the list. I was struggling to get the correct comparison tools identified and installed in time, so I need to identify those in the future.
 - I'm not comfortable with only making the one library with multiple classes inside the main .cs file. I'm looking now into better ways to break that up - I'm not a big fan of that particular folder structure, and this came about from my first time using the ```dotnet sln``` and creating libraries via console commands.
