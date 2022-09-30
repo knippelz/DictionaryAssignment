@@ -69,5 +69,16 @@ public class CompoundWordTests
             Assert.AreNotEqual(testCompound, actualCompound, "Compound second word equality error");
         }
 
+        [TestMethod]
+        public void CompoundEqualsTypeMismatch()
+        {
+            string word1 = "test";
+            string word2 = "er";
+            string word3 = "tester";
+
+            CompoundWord testCompound = new CompoundWord(word1, word2);
+            Assert.AreNotEqual(testCompound, word3, "Compound second word equality error");
+        }
+
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace CompoundWordLibrary
 {
-    public class CompoundWord
+    public class CompoundWord : IEquatable<CompoundWord>
     {
         public string FirstWord { get; set; }
         public string SecondWord { get; set; }
@@ -23,7 +23,14 @@
 
         public override bool Equals(object obj)
         {
-            return this.FirstWord.Equals(((CompoundWord)obj).FirstWord) && this.SecondWord.Equals(((CompoundWord)obj).SecondWord);
+            return this.Equals(obj as CompoundWord);
+        }
+
+        public bool Equals(CompoundWord other)
+        {
+            if (other == null)
+                return false;
+            return this.FirstWord.Equals(other.FirstWord) && this.SecondWord.Equals(other.SecondWord);
         }
 
         public override int GetHashCode()
