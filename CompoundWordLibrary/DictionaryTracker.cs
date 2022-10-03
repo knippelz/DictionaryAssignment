@@ -65,7 +65,6 @@ public class DictionaryTracker
     public void SortFinalWords()
     {
         this.FinalWords = this.Compounds.OrderBy(word => word.Compound()).ThenBy(word => word.FirstWord.Length).ToList();
-        // System.IO.File.WriteAllLines($"finalWords.txt", sortedWords.ToList().ConvertAll(word => word.ToString()));
     }
 
     public void GenerateCompoundWords()

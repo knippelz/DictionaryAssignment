@@ -28,7 +28,6 @@ class DictionaryAssignment
             string[] rawWords = File.ReadAllLines(args[0]);
             DictionaryTracker dT = targetLength == 0 ? new(rawWords) : new(rawWords, targetLength);
             dT.GenerateCompoundWords();
-            // dT.OutputToConsole();
             dT.OutputToFile(args[1]);
         }
         catch (IOException e)
