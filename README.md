@@ -5,9 +5,9 @@
 2. Ensure that .NET 6.0 is installed ([link here](https://dotnet.microsoft.com/en-us/download/dotnet/6.0))
 3. In Powershell (or your preferred terminal) navigate to the project directory
 4. Enter the command ```dotnet build``` to build the project
-5. Once the project is built, use the command ```dotnet run --project .\DictionaryAssignment\DictionaryAssignment.csproj``` to run it
+5. Once the project is built, use the command ```dotnet run --project .\DictionaryAssignment\DictionaryAssignment.csproj [Input filepath] [Output filepath]``` to run it
 6. If you want to input a target length parameter, add the target length (as a number) after at the end of the run command.
-   - For example, if you want a target length of 4, then use ```dotnet run --project .\DictionaryAssignment\DictionaryAssignment.csproj 4```
+   - For example, if you want a target length of 4, then use ```dotnet run --project .\DictionaryAssignment\DictionaryAssignment.csproj [Input filepath] [Output filepath] 4```
 7. Alternatively, you can run the project using the ```RunDictionaryAssignment.ps1``` script, which will handle steps 4-6 automatically.
 
 **(OPTIONAL)** - a unit test suite is included (```DictionaryAssignmentTests```). This is honestly where I learned about Visual Studio vs. VS Code, and it can be run by...
